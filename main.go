@@ -23,5 +23,11 @@ func main() {
 	if err != nil {
 		log.Panic(err) //panic when u get a programmer error
 	}
-	fmt.Println(string(bs))
+	fmt.Println("PRINT JSON:", string(bs))
+	slicePerson2 := []person{}
+	err = json.Unmarshal(bs, &slicePerson2)
+	if err != nil {
+		log.Panic(err)
+	}
+	fmt.Println("Unmashalled data:", slicePerson2)
 }
