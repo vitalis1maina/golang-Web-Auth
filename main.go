@@ -14,7 +14,7 @@ var key []byte
 func main() {
 	//use cases
 	for i := 1; i <= 64; i++ {
-		key = append(key, byte(Invalid))
+		key = append(key, byte(i))
 	}
 	password := "vi&%$#@323vead^!9089u"
 	hashedPass, err := hashedPassword(password)
@@ -48,7 +48,7 @@ func signMessage(msg []byte) ([]byte, error) {
 	signature := h.Sum(nil)
 	return signature, nil
 }
-func checksig(msg, sig []byte) {
+func checksig(msg, sig []byte) (bool, error) {
 	newsig, err := signMessage(msg)
 	if err != nil {
 		return false, fmt.Errorf("error in checkSig while getting signature of message: %w", err)
